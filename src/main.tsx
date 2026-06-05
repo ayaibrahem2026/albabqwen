@@ -1,33 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import {
-  createRouter,
-  RouterProvider,
-} from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen'
-import './styles.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+import "./styles.css";
 
-// إنشاء الراوتر
-const router = createRouter({ 
-  routeTree,
-  defaultPreload: 'intent',
-  defaultPreloadStaleTime: 0,
-})
+const router = createRouter({ routeTree });
 
-// تسجيل الراوتر للحصول على تحسينات النوعية
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }
 
-const rootElement = document.getElementById('root')!
-
-if (!rootElement.innerHTML) {
-  const root = createRoot(rootElement)
+const rootElement = document.getElementById("root");
+if (rootElement && !rootElement.innerHTML) {
+  const root = createRoot(rootElement);
   root.render(
     <StrictMode>
       <RouterProvider router={router} />
-    </StrictMode>,
-  )
+    </StrictMode>
+  );
 }
