@@ -18,17 +18,15 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-primary">
           الباب تيك
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
-              to={link.href as any}
+              to={link.href as '/' | '/products' | '/services' | '/portfolio' | '/about' | '/contact'}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
@@ -36,7 +34,6 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Theme Toggle & Mobile Menu */}
         <div className="flex items-center gap-4">
           <button
             onClick={toggleTheme}
