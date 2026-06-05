@@ -19,7 +19,6 @@ export function Footer() {
     <footer className="border-t bg-muted/50">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
-          {/* Brand */}
           <div className="md:col-span-2">
             <Link to="/" className="text-2xl font-bold text-primary mb-4 inline-block">
               الباب تيك
@@ -42,14 +41,13 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Company Links */}
           <div>
             <h3 className="font-semibold mb-4">الشركة</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href as any}
+                    to={link.href as '/' | '/about' | '/services' | '/portfolio'}
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
@@ -59,14 +57,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Support Links */}
           <div>
             <h3 className="font-semibold mb-4">الدعم</h3>
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href as any}
+                    to={link.href as '/' | '/contact' | '/products'}
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
@@ -77,7 +74,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t mt-12 pt-8 text-center text-muted-foreground">
           <p>© {currentYear} الباب تيك. جميع الحقوق محفوظة.</p>
         </div>
