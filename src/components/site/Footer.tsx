@@ -1,86 +1,73 @@
-import { Link } from '@tanstack/react-router';
-
-const footerLinks = {
-  products: [
-    { href: '/products', label: 'جميع المنتجات' },
-    { href: '/products', label: 'الحلول السحابية' },
-    { href: '/products', label: 'الأمن السيبراني' },
-  ],
-  services: [
-    { href: '/services', label: 'الاستشارات التقنية' },
-    { href: '/services', label: 'التطوير والبرمجة' },
-    { href: '/services', label: 'الدعم الفني' },
-  ],
-  company: [
-    { href: '/about', label: 'من نحن' },
-    { href: '/portfolio', label: 'أعمالنا' },
-    { href: '/contact', label: 'اتصل بنا' },
-  ],
-};
+import { Link } from '@tanstack/react-router'
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
+
+  const footerLinks = {
+    company: [
+      { href: '/about', label: 'من نحن' },
+      { href: '/services', label: 'الخدمات' },
+      { href: '/portfolio', label: 'أعمالنا' },
+    ],
+    support: [
+      { href: '/contact', label: 'اتصل بنا' },
+      { href: '/products', label: 'المنتجات' },
+    ],
+  }
 
   return (
-    <footer className="bg-muted/50 border-t border-border">
+    <footer className="border-t bg-muted/50">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* معلومات الشركة */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/80 text-primary-foreground font-bold text-xl">
-                ب
-              </div>
-              <span className="text-2xl font-bold text-gradient">الباب تيك</span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              شركة تقنية رائدة تقدم حلولاً مبتكرة في مجال التكنولوجيا. نسعى لتمكين الأعمال من خلال التقنيات الحديثة.
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <Link to="/" className="text-2xl font-bold text-primary mb-4 inline-block">
+              الباب تيك
+            </Link>
+            <p className="text-muted-foreground max-w-md mb-6">
+              حلول تقنية مبتكرة لأعمالك الرقمية. نساعدك على تحويل أفكارك إلى واقع رقمي ملموس.
             </p>
-          </div>
-
-          {/* المنتجات */}
-          <div>
-            <h3 className="font-bold mb-4">المنتجات</h3>
-            <ul className="space-y-2">
-              {footerLinks.products.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+            <div className="flex gap-4">
+              {['twitter', 'linkedin', 'github'].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                  aria-label={social}
+                >
+                  <span className="sr-only">{social}</span>
+                  🔗
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* الخدمات */}
+          {/* Company Links */}
           <div>
-            <h3 className="font-bold mb-4">الخدمات</h3>
-            <ul className="space-y-2">
-              {footerLinks.services.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* الشركة */}
-          <div>
-            <h3 className="font-bold mb-4">الشركة</h3>
+            <h3 className="font-semibold mb-4">الشركة</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    to={link.href as any}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support Links */}
+          <div>
+            <h3 className="font-semibold mb-4">الدعم</h3>
+            <ul className="space-y-2">
+              {footerLinks.support.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href as any}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -90,23 +77,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* حقوق النشر */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              © {currentYear} الباب تيك. جميع الحقوق محفوظة.
-            </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                سياسة الخصوصية
-              </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                شروط الاستخدام
-              </a>
-            </div>
-          </div>
+        {/* Bottom Bar */}
+        <div className="border-t mt-12 pt-8 text-center text-muted-foreground">
+          <p>© {currentYear} الباب تيك. جميع الحقوق محفوظة.</p>
         </div>
       </div>
     </footer>
-  );
+  )
 }
