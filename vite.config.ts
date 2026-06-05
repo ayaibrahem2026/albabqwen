@@ -6,10 +6,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({
-      routesDirectory: "./src/routes",
-      generatedRouteTree: "./src/routeTree.gen.ts",
-    }),
+    TanStackRouterVite(), // هذا السطر هو المهم جداً!
     react(),
     tailwindcss(),
     tsconfigPaths(),
@@ -17,14 +14,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "~": "/src",
-      "@": "/src",
     },
-  },
-  server: {
-    port: 3000,
-  },
-  build: {
-    outDir: "dist",
-    sourcemap: true,
   },
 });
